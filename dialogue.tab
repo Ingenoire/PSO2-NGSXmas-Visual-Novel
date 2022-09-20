@@ -1,0 +1,9 @@
+Identifier	Character	Dialogue	Filename	Line Number	Ren'Py Script
+start_67fe9cae		You are in a hallway.	game/script.rpy	24	"[what]"
+start_ad0956b7		You see a door and open it.	game/script.rpy	26	"[what]"
+start_a017b95a	y	You've created a new Ren'Py game.	game/script.rpy	40	y "[what]"
+start_538fc44a	y	Once you add a story, pictures, and music, you can release it to the world!	game/script.rpy	44	y "[what]"
+start_12404db1	y	Hello world!	game/script.rpy	48	y "[what]"
+start_bcfd536a	a	Oh, hello Yvonne!	game/script.rpy	53	a "[what]"
+start_a9a775d7	a	For a second I thought placing the left and right was going to be impossible!	game/script.rpy	57	a "[what]"
+start_878dd89f	a	But hey, all's well that ends well.	game/script.rpy	59	a "[what]"

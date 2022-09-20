@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/screens.rpy", line 1149: expected a keyword argument or end of line.
+    xpos = n_x
+         ^
+
+Ren'Py Version: Ren'Py 8.0.3.22090809
+Tue Sep 20 19:09:14 2022
