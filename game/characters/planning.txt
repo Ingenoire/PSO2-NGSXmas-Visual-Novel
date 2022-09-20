@@ -1,0 +1,5 @@
+Named characters have their unique lines for their intro, outro lines.
+
+Classes hold trial resolutions
+
+Personalities hold trial starts

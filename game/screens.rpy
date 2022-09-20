@@ -1150,6 +1150,18 @@ screen displayTextScreen:
         ypos n_y
         frame:
             text displayText
+
+## Player Info 
+screen displayPlayerScreen:  
+    default player_name = ""
+    default player_img = ""
+    vbox:
+        xpos 0.7
+        ypos 0.2
+        image player_img:
+            crop (700, 150, 450, 600)
+        frame:
+            text player_name
         
 
 

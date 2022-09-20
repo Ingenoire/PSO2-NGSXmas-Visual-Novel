@@ -3,68 +3,30 @@
 While running game code:
   File "game/script.rpy", line 110, in script call
     call intro
-  File "game/choosecharacter.rpy", line 6, in script
-    call screen choosepartner
-  File "renpy/common/000statements.rpy", line 609, in execute_call_screen
-    store._return = renpy.call_screen(name, *args, **kwargs)
-  File "game/choosecharacter.rpy", line 16, in execute
-    screen choosepartner:
-  File "game/choosecharacter.rpy", line 16, in execute
-    screen choosepartner:
-  File "game/choosecharacter.rpy", line 17, in execute
-    imagebutton:
-Exception: Imagebutton does not have a idle image. (auto='pac_goddess_%s.png').
+  File "game/chooseplayer.rpy", line 7, in script call
+    call screen chooseplayer
+  File "game/chooseplayer.rpy", line 20, in script call
+    $ renpy.call(p1.img + ".mainhired")
+  File "game/characters/yvonne.rpy", line 5, in script
+    y "I really appreciate you coming for me."
+Exception: Sayer b'y' is not a function or string.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
   File "game/script.rpy", line 110, in script call
     call intro
-  File "game/choosecharacter.rpy", line 6, in script
-    call screen choosepartner
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\ast.py", line 2232, in execute
-    self.call("execute")
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\ast.py", line 2220, in call
-    return renpy.statements.call(method, parsed, *args, **kwargs)
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\statements.py", line 281, in call
-    return method(parsed, *args, **kwargs)
-  File "renpy/common/000statements.rpy", line 609, in execute_call_screen
-    store._return = renpy.call_screen(name, *args, **kwargs)
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\exports.py", line 3181, in call_screen
-    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\ui.py", line 299, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 3377, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 3810, in interact_core
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 582, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 582, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 582, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\display\screen.py", line 451, in visit_all
-    callback(self)
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 3810, in <lambda>
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\display\screen.py", line 462, in per_interact
-    self.update()
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\display\screen.py", line 653, in update
-    self.screen.function(**self.scope)
-  File "game/choosecharacter.rpy", line 16, in execute
-    screen choosepartner:
-  File "game/choosecharacter.rpy", line 16, in execute
-    screen choosepartner:
-  File "game/choosecharacter.rpy", line 17, in execute
-    imagebutton:
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\ui.py", line 952, in _imagebutton
-    idle = choice(idle, idle_image, "idle", required=True)
-  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\ui.py", line 946, in choice
-    raise Exception("Imagebutton does not have a %s image. (auto=%r)." % (name, auto))
-Exception: Imagebutton does not have a idle image. (auto='pac_goddess_%s.png').
+  File "game/chooseplayer.rpy", line 7, in script call
+    call screen chooseplayer
+  File "game/chooseplayer.rpy", line 20, in script call
+    $ renpy.call(p1.img + ".mainhired")
+  File "game/characters/yvonne.rpy", line 5, in script
+    y "I really appreciate you coming for me."
+  File "C:\Users\alain\Downloads\renpy-8.0.3-sdk\renpy\ast.py", line 898, in execute
+    raise Exception("Sayer %s is not a function or string." % self.who.encode("utf-8"))
+Exception: Sayer b'y' is not a function or string.
 
 Windows-10-10.0.22000 AMD64
 Ren'Py 8.0.3.22090809
 PSO2NGSmas 1.0
-Tue Sep 20 18:46:45 2022
+Tue Sep 20 23:48:08 2022

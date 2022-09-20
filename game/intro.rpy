@@ -36,6 +36,6 @@ label intro:
     g.c "Your actions will lead to either getting points or losing points."
     g.c "Finally, you must bring a partner with you."
 
-    jump enterbar
+    jump playerselectmenu
 
     return
