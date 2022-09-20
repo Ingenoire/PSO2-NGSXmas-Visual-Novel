@@ -131,5 +131,5 @@ dmypy.json
 errors.txt
 log.txt
 traceback.txt
-games/saves/
-games/cache/
+/games/saves/
+/games/cache/
