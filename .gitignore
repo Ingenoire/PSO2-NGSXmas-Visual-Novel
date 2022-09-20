@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+errors.txt
+log.txt
+traceback.txt
