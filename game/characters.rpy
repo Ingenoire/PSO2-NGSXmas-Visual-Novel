@@ -13,11 +13,9 @@ init python:
     }
 
     class Person:
-        def __init__(self, character, name, img, main_class, personality):
+        def __init__(self, character, name, img):
             self.c = character
             self.name = name
-            self.main_class = main_class
-            self.personality = personality
             self.img = img
 
     
@@ -26,11 +24,10 @@ define defaultCharacter = Character("Yvonne", color="#FFFFFF")
 define narrator = Character(window_background="gui/textbox_red.png")
 
 
-define personalities = ["brave", "showoff", "withdrawn", "leader", "clumsy", "elder", "sick", "innocent", "airhead", "intellect"]
-
 # Player 1
-define p1 = Person(Character("Megami"), "Megami", "goddess", "hunter", "airhead")
-define p2 = Person(Character("Megami"), "Megami", "goddess", "hunter", "airhead")
+define p1 = Person(Character("Megami"), "Megami", "goddess")
+define p2 = Person(Character("Megami"), "Megami", "goddess")
+define actors = []
 
 label characterSetup:
     $ g = Person(Character(
@@ -41,22 +38,17 @@ label characterSetup:
         namebox_background="gui/namebox_green.png", 
         callback=high_beep), 
         "Megami", 
-        "goddess", 
-        "hunter", 
-        "airhead")
+        "goddess")
     
-    $ y = Person(Character(
-        "Yvonne", 
-        kind=defaultCharacter, 
-        image="yvonne", 
-        window_background="gui/textbox_red.png", 
-        namebox_background="gui/namebox.png", 
-        callback=high_beep),
-        "Yvonne", 
-        "yvonne", 
-        "hunter", 
-        "airhead")
-    $ a = Person(Character("Alternoire", kind=defaultCharacter, image="alternoire", window_background="gui/textbox_blue.png", namebox_background="gui/namebox_blue.png", callback=high_beep), "Alternoire", "alternoire", "hunter", "withdrawn")
+    python:
+        for i in renpy.get_all_labels():
+            if i.startswith("char_"):
+                actors.append(i)
+
+        for a in actors:
+            renpy.call(a + ".charsetup")
+    
+    $ a = Person(Character("Alternoire", kind=defaultCharacter, image="alternoire", window_background="gui/textbox_blue.png", namebox_background="gui/namebox_blue.png", callback=high_beep), "Alternoire", "alternoire")
 
 
     return

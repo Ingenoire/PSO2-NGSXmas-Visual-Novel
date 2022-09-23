@@ -18,7 +18,7 @@ label hireYvonne:
     menu:
         "Yes!":
             $ p2 = y
-            call exitbar from _call_exitbar
+            call exitbar
         "No, I'll think again...":
             y.c giveup "Oh... it's okay, take your time."
 

@@ -106,7 +106,7 @@ transform bounce:
 define points = 0
 
 label start:
-    call characterSetup from _call_characterSetup
-    call intro from _call_intro
+    call characterSetup
+    call intro
     return
     

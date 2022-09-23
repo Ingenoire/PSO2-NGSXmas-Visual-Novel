@@ -11,7 +11,7 @@ label intro:
     show goddess idle
     with dissolve
 
-    g.c "In my presence, I welcome you."
+    y.c "In my presence, I welcome you."
 
     scene bg goddess welcome
     with fade
@@ -21,7 +21,7 @@ label intro:
 
     g.c "I hope you can make it safely to N-Oracle, and be rewarded with the content your soul has desired for nearly 2 years now..."
 
-    $ g.c("I am a " + mainclasses[g.main_class] + ", so I can handle myself in battle you know!")
+    $ g.c("I am a , so I can handle myself in battle you know!")
 
     g.c "I have heard Halpha's Collective Cry for Content."
     g.c "I was merely passing by this universe, and I thought I could do something."

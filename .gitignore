@@ -133,3 +133,10 @@ log.txt
 traceback.txt
 /games/saves/
 /games/cache/
+game/cache/bytecode.rpyb
+game/cache/py3analysis.rpyb
+game/cache/screens.rpyb
+game/cache/shaders.txt
+*.save
+game/saves/navigation.json
+game/saves/persistent
