@@ -4,15 +4,9 @@
 ## This is a character file!
 #### Read this carefully so that your character can work properly!
 
-
-
 label char_yvonne:
     
     label .charsetup:
-        # Please read carefully!
-        # /----------- Variable Name for your Character, change it to something simple but NOT IN USE BY OTHERS
-        # |            Check the file list in characters. The word before the _ is the variable for easier reading of used vars.
-        # V
         $ y = Person(Character(
             "Yvonne",                                           # The Character's name, shown on screen.
             kind=defaultCharacter,                              # ----- Ignore -----

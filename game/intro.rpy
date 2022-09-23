@@ -18,6 +18,29 @@ label intro:
     camera:
         perspective False
 
+    menu:
+        "Hello":
+            g.c "Guess you're a hunter."
+        "Goodbye":
+            g.c "Guess you're a hunter."
+
+    menu:
+        "{image=hunter.png} HUNTER":
+            g.c "Guess you're a hunter."
+        "{image=fighter.png} FIGHTER":
+            g.c "Guess you're a fighter."
+        "{image=ranger.png} RANGER":
+            g.c "Guess you're a ranger."
+        "{image=gunner.png} GUNNER":
+            g.c "Guess you're a gunner."
+        "{image=force.png} FORCE":
+            g.c "Guess you're a force."
+        "{image=techter.png} TECHTER":
+            g.c "Guess you're a techter."
+        "{image=braver.png} BRAVER":
+            g.c "Guess you're a braver."
+        "{image=bouncer.png} BOUNCER":
+            g.c "Guess you're a bouncer."
 
     g.c "I hope you can make it safely to N-Oracle, and be rewarded with the content your soul has desired for nearly 2 years now..."
 

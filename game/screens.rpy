@@ -217,17 +217,19 @@ screen choice(items):
     frame: 
         style_prefix "choice"
         background Frame("gui/choicebg.png", 11, 11)
-        xfill True
-        xmargin 590
-        ymargin 470
-        yalign .535
+        xalign .5
+        yalign .5
+        xpadding 10
+        ypadding 10
         ypos 0.5
 
-    vbox:
+        has vbox
+
         for i in items:
             textbutton i.caption action i.action:
                 hover_sound "audio/menu_hover.ogg"
                 activate_sound "audio/menu_click.ogg"
+
 
 style choice_vbox is vbox
 style choice_button is button
@@ -235,8 +237,6 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 500
-    yanchor 0.5
 
     spacing gui.choice_spacing
 
