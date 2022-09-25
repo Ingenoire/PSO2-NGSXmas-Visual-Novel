@@ -38,6 +38,29 @@ label char_yvonne:
 
         return
 
+    label .decideclass(forMain=False):
+        show yvonne c shock
+        $ emote("yvonne","notice")
+
+        y.c "Oh, uhh, sure."
+        show yvonne c thinking
+        pause 0.2
+        y.c "Hmm...{w=1.0}{nw}"
+
+        $ selectableClasses = classes.copy()
+        if (forMain==False): 
+            $ selectableClasses.remove(main_class)
+
+        if forMain:
+            $ main_class = renpy.random.choice(classes)
+            y.c c closeup "Well then, your main class is going to be... a {image=[main_class].png} [main_class]!"
+        else:
+            $ sub_class = renpy.random.choice(classes)
+            y.c c closeup "Well then, your sub class is going to be... a {image=[sub_class].png} [sub_class]!"
+
+
+        return
+
     label .mainhired:
         show yvonne icecream
         with dissolve

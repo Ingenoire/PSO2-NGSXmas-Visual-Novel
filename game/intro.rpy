@@ -47,102 +47,153 @@ label intro:
         perspective True
         ease 0.175 xpos 0.2
 
+    show item classes at itemright
+
     y.c "Before we can begin, you're going to have to take a Main Class and a Sub Class."
 
+    y.c c serious "You won't be able to change your classes during a run, however."
+
+    hide item classes
+
     menu:
-        "What is your Main Class?"
+        y.c c sidepoint "What is your Main Class?"
 
         "{image=hunter.png} HUNTER":
             $ main_class = "hunter"
-            g.c "Guess you're a hunter."
+            y.c c smug "Oh! Nice, a Hunter! I'm a Hunter too!"
+            $ ex_hunter = renpy.random.random()
+            if(ex_hunter <= 0.1):
+                y.c c thinking "Heh, you know, that reminds me..."
+                y.c "The only reason I started as a Hunter was because of that Labrys weapon camo."
+                y.c "There wasn't really an Axe weapon in PSO2, since that was what I was initially trying to go for."
+                y.c c serious "Thankfully, Partisan in Classic PSO2 had very quick basic attacks."
+                y.c "If I were to try using say, Sword, or worse... Katana...{w=0.5} I don't think I might have kept playing PSO2..."
+                y.c c thinking "...{w=0.5}{nw}"
+
+                show yvonne c shock at bounce
+                $ emote("yvonne","exclamation")
+
+                y.c "Oh, sorry!{w=0.1} Got a bit, nostalgic."
+                y.c c closeup "Heh, uhh, let's continue!"
         "{image=fighter.png} FIGHTER":
             $ main_class = "fighter"
-            g.c "Guess you're a fighter."
+            y.c "A Fighter, huh? That's cool."
         "{image=ranger.png} RANGER":
             $ main_class = "ranger"
-            g.c "Guess you're a ranger."
+            y.c "Guess you're a ranger."
         "{image=gunner.png} GUNNER":
             $ main_class = "gunner"
-            g.c "Guess you're a gunner."
+            y.c "Pew pew! A Gunner, daring!"
         "{image=force.png} FORCE":
             $ main_class = "force"
-            g.c "Guess you're a force."
+            y.c "Guess you're a force."
         "{image=techter.png} TECHTER":
             $ main_class = "techter"
-            g.c "Guess you're a techter."
+            y.c "Guess you're a techter."
         "{image=braver.png} BRAVER":
             $ main_class = "braver"
-            g.c "Guess you're a braver."
+            y.c "Guess you're a braver."
         "{image=bouncer.png} BOUNCER":
             $ main_class = "bouncer"
-            g.c "Guess you're a bouncer."
+            y.c "Guess you're a bouncer."
+        "{image=waker.png} WAKER":
+            $ main_class = "waker"
+            y.c "Guess you're a waker."
+        "Decide for me!":
+            call char_yvonne.decideclass(True)
+
+    show yvonne c sidepoint with dissolve
 
     menu:
-        "What is your Sub Class?"
+        y.c "What is your Sub Class?"
 
         "{image=hunter.png} HUNTER" if (main_class != "hunter"):
             $ sub_class = "hunter"
-            g.c "Guess you're a hunter."
+            y.c "Guess you're a hunter."
         "{image=fighter.png} FIGHTER" if (main_class != "fighter"):
             $ sub_class = "fighter"
-            g.c "Guess you're a fighter."
+            y.c "Guess you're a fighter."
         "{image=ranger.png} RANGER" if (main_class != "ranger"):
             $ sub_class = "ranger"
-            g.c "Guess you're a ranger."
+            y.c "Guess you're a ranger."
         "{image=gunner.png} GUNNER" if (main_class != "gunner"):
             $ sub_class = "gunner"
-            g.c "Guess you're a gunner."
+            y.c "Guess you're a gunner."
         "{image=force.png} FORCE" if (main_class != "force"):
             $ sub_class = "force"
-            g.c "Guess you're a force."
+            y.c "Ooh! I'm a Force sub-class too!"
         "{image=techter.png} TECHTER" if (main_class != "techter"):
             $ sub_class = "techter"
-            g.c "Guess you're a techter."
+            y.c "Guess you're a techter."
         "{image=braver.png} BRAVER" if (main_class != "braver"):
             $ sub_class = "braver"
-            g.c "Guess you're a braver."
+            y.c "Guess you're a braver."
         "{image=bouncer.png} BOUNCER" if (main_class != "bouncer"):
             $ sub_class = "bouncer"
-            g.c "Guess you're a bouncer."
+            y.c "Guess you're a bouncer."
+        "{image=waker.png} WAKER" if (main_class != "waker"):
+            $ sub_class = "waker"
+            y.c "Guess you're a waker."
+        "Decide for me!":
+            call char_yvonne.decideclass(False)
+    
+    y.c "Your main class ({image=[main_class].png}) and your sub class ({image=[sub_class].png}) will determine the additional options you can perform during certain trials."
 
     menu:
-        "Something happens! What do you do?"
+        "Such as..."
 
-        "Do something as a generic":
-            g.c "You don't have much to do huh..."
-        "{image=hunter.png} Do this action because you're a Hunter!" if (main_class == "hunter" or sub_class == "hunter"):
-            g.c "Guess you're a hunter."
-        "{image=fighter.png} Do this action because you're a Fighter!" if (main_class == "fighter" or sub_class == "fighter"):
-            g.c "Guess you're a fighter."
-        "{image=ranger.png} Do this action because you're a Ranger!" if (main_class == "ranger" or sub_class == "ranger"):
-            g.c "Guess you're a ranger."
-        "{image=gunner.png} Do this action because you're a Gunner!" if (main_class == "gunner" or sub_class == "gunner"):
-            g.c "Guess you're a gunner."
-        "{image=force.png} Do this action because you're a Force!" if (main_class == "force" or sub_class == "force"):
-            g.c "Guess you're a force."
-        "{image=techter.png} Do this action because you're a Techter!" if (main_class == "techter" or sub_class == "techter"):
-            g.c "Guess you're a techter."
-        "{image=braver.png} Do this action because you're a Braver!" if (main_class == "braver" or sub_class == "braver"):
-            g.c "Guess you're a braver."
-        "{image=bouncer.png} Do this action because you're a Bouncer!" if (main_class == "bouncer" or sub_class == "bouncer"):
-            g.c "Guess you're a bouncer."
+        "So this is a class check?":
+            y.c "Not exactly, but kind of."
+            y.c "It is a gameshow where the trials are randomized every run."
+            y.c "You're not expected to succeed all trials. Leave that meta mindset outside for just a bit, please..."
+            $ ex_fe = renpy.random.random()
+            if(ex_fe <= 0.2):
+                y.c c thinking "..."
+                y.c "Don't you dare make a meta guide for this fangame."
+        "I don't understand.":
+            y.c c talk "Well, I guess you'll figure things out as you play."
+            y.c "It's honestly the best way to experience this."
+        "{image=hunter.png} I understand." if (main_class == "hunter" or sub_class == "hunter"):
+            y.c "Glad you understand! I can always rely on a Hunter like you!"
+        "{image=fighter.png} Alright, gotcha, let's slay." if (main_class == "fighter" or sub_class == "fighter"):
+            y.c "Yeah!! Show me some of that fire!."
+        "{image=ranger.png} Glad to have you at my side." if (main_class == "ranger" or sub_class == "ranger"):
+            y.c "Keep the forest safe-{w=0.3}{nw}"
+            y.c "Uh, I mean, good work, Ranger!"
+        "{image=gunner.png} Let's rock!" if (main_class == "gunner" or sub_class == "gunner"):
+            y.c "I pray you can keep your style rank at SSS!"
+        "{image=force.png} I pray for your safety." if (main_class == "force" or sub_class == "force"):
+            y.c "Thank you very much, [p_name]! I hope you too stay safe!"
+        "{image=techter.png} Sniff." if (main_class == "techter" or sub_class == "techter"):
+            camera:
+                perspective True
+                ease 0.8 zpos -300 xpos 0.01
+            y.c "So you're a Techt-{w=0.7}{nw}"
+            $ emote("yvonne","exclamation")
+            show yvonne c shock at bounce
+            camera:
+                perspective True
+                ease 0.175 zpos -0 xpos 0.2
+            y.c "Hey! No sniffing!"
+            y.c "What are you trying to do by sniffin-{w=0.6}{nw}"
+            y.c c thinking "Oh, that was meant to roleplay a weakling."
+        "{image=braver.png} Nani?" if (main_class == "braver" or sub_class == "braver"):
+            y.c "...another braver, great...{w=0.3}{nw}"
+            y.c "Hey, that's no problem!"
+        "{image=bouncer.png} Miss, this way." if (main_class == "bouncer" or sub_class == "bouncer"):
+            y.c "H-hey, you're not a bouncer at a bar!"
+        "{image=waker.png} Keep talking..." if (main_class == "waker" or sub_class == "waker"):
+            y.c "Guess you're a waker."
 
-    g.c "I hope you can make it safely to N-Oracle, and be rewarded with the content your soul has desired for nearly 2 years now..."
+    y.c c thinking "Anyway..."
+    camera:
+        perspective True
+        ease 0.175 zpos 0.0 xpos 0.0 ypos 0.0
+    show yvonne c wink at bounce
 
-    $ g.c("I am a , so I can handle myself in battle you know!")
-
-    g.c "I have heard Halpha's Collective Cry for Content."
-    g.c "I was merely passing by this universe, and I thought I could do something."
-    g.c "I've read the collective consciousness of ARKS. I know what all of you want."
-    g.c "You want to return to the Oracle Fleet, but in HD. You want that good old classic PSO2 back, in glorious Hi-Definition Graphics."
-    g.c "But, you want more than just the old stuff. You want 8 years worth of new content, to satisfy the content famine caused by NGS."
-    g.c "With my powers, I have manifested a portal to N-Oracle."
-    g.c "However, this paradise of ideals will only open by shedding sweat and tears."
-    g.c "I have... re-adjusted, your microscopic world, to be a linear course."
-    g.c "All you have to do is reach the Volcanic Mountain, Stia."
-    g.c "But the quality of the N-Oracle you'll find will depend on your accomplishments on your journey there."
-    g.c "Your actions will lead to either getting points or losing points."
-    g.c "Finally, you must bring a partner with you."
+    y.c "The game has a score system."
+    y.c "Clearing trials will net you points, while failing them will deduct points."
+    y.c "As a gameshow, we'll reward you with nice prizes based on how well you perform!"
 
     jump playerselectmenu
 

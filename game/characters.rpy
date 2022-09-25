@@ -1,17 +1,6 @@
 init python:
     
-    mainclasses = {
-        "hunter": "Hunter",
-        "fighter": "Fighter",
-        "ranger": "Ranger",
-        "gunner": "Gunner",
-        "force": "Force",
-        "techter": "Techter",
-        "braver": "Braver",
-        "bouncer": "Bouncer",
-        "waker": "Waker"
-    }
-
+    
     class Person:
         def __init__(self, character, name, img):
             self.c = character
@@ -19,6 +8,17 @@ init python:
             self.img = img
 
     
+define classes = [
+        "hunter",
+        "fighter",
+        "ranger",
+        "gunner",
+        "force",
+        "techter",
+        "braver",
+        "bouncer",
+        "waker"
+    ]
 
 define defaultCharacter = Character("Yvonne", color="#FFFFFF")
 define narrator = Character(window_background="gui/textbox_red.png")

@@ -70,12 +70,11 @@ init python:
             trnf = question
             renpy.sound.play("audio/question.ogg")
         elif emotion == "notice": 
+            x -= 100
             trnf = notice
             renpy.sound.play("audio/notice.ogg")
         
         renpy.show(emotion, at_list=[Transform(pos=(x, y)), trnf])
-
-
 
 ## The borders of the box containing the character's name, in left, top, right,
 ## bottom order.
@@ -129,6 +128,16 @@ transform trueright:
     ypos 20
     zpos 100
     yoffset 30
+
+
+transform itemright:
+    xcenter 0.88
+    ycenter 0.4
+    zpos 100
+transform itemleft:
+    xcenter 0.15
+    ycenter 0.4
+    zpos 100
 
 transform truecenter:
     xcenter 0.5
