@@ -1,6 +1,5 @@
 
 
-
 ## This is a character file!
 #### Read this carefully so that your character can work properly!
 
@@ -19,8 +18,29 @@ label char_yvonne:
         
         return
     
+    label .namejudge:
+        if p_name == "Boobs":
+            y.c c smug "Oh dear. Are you sure you wanna play the game with a silly name like that?"
+        else:
+            return
+        
+        menu:
+            "Yes, stop name shaming!":
+                y.c c wink "Ok, fine. I never got the appeal but you do you."
+            
+            "Actually no...":
+                show yvonne c shock at bounce
+                $ emote("yvonne","confused")
+                y.c "T-then why did you pick it?"
+
+                $ p_name = "Sandbag"
+                y.c "I fixed it, so enjoy your new name, [p_name]!"
+
+        return
+
     label .mainhired:
         show yvonne icecream
         with dissolve
 
         y.c "I really appreciate you coming for me."
+        return

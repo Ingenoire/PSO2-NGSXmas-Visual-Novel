@@ -178,14 +178,22 @@ screen input(prompt):
 
     window:
 
-        vbox:
+        frame: 
+            style_prefix "input"
+            background Frame("gui/inputbg.png", 11, 11)
+            xalign .5
+            yalign .45
+            xpadding 40
+            ypadding 40
+
+            has vbox
             xanchor gui.dialogue_text_xalign
-            xpos gui.dialogue_xpos
             xsize gui.dialogue_width
-            ypos gui.dialogue_ypos
 
             text prompt style "input_prompt"
             input id "input"
+
+        add "gui/keyboardinput.png" xpos 0.7 ypos -100
 
 style input_prompt is default
 

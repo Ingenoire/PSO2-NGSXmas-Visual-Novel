@@ -47,8 +47,5 @@ label characterSetup:
 
         for a in actors:
             renpy.call(a + ".charsetup")
-    
-    $ a = Person(Character("Alternoire", kind=defaultCharacter, image="alternoire", window_background="gui/textbox_blue.png", namebox_background="gui/namebox_blue.png", callback=high_beep), "Alternoire", "alternoire")
-
-
+            
     return
