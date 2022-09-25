@@ -2,11 +2,7 @@ label intro:
     camera:
         perspective True
         zpos 0 xpos 0 ypos 0
-
-    "[ref_actor_files]"
-    "[actors]"
-    "[actors[0].tags]"
-
+    
     scene bg christmas at zbg
     with fade
 
