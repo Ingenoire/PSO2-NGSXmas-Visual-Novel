@@ -30,7 +30,7 @@ label intro:
         p_name = renpy.input("What is your name?", length=13)
         p_name = p_name.strip()
 
-        if not p_name:
+        if p_name == "":
             p_name = "Viewer"
 
     call char_yvonne.namejudge
@@ -156,7 +156,7 @@ label intro:
         "{image=hunter.png} I understand." if (main_class == "hunter" or sub_class == "hunter"):
             y.c "Glad you understand! I can always rely on a Hunter like you!"
         "{image=fighter.png} Alright, gotcha, let's slay." if (main_class == "fighter" or sub_class == "fighter"):
-            y.c "Yeah!! Show me some of that fire!."
+            y.c "Yeah!! Show me some of that fire!"
         "{image=ranger.png} Glad to have you at my side." if (main_class == "ranger" or sub_class == "ranger"):
             y.c "Keep the forest safe-{w=0.3}{nw}"
             y.c "Uh, I mean, good work, Ranger!"
@@ -199,6 +199,8 @@ label intro:
     y.c "You'll get to see some interviews, trivia, and even some other strange events, based on our ratings."
     y.c "Creating this gameshow was only possible thanks to many PSO2 players from all around the world, and they'll be taking on acting roles during certain trials!"
 
+    show yvonne c mic at to_left
+
     y.c "For example..."
 
     # Tutorial Guest Call
@@ -207,6 +209,8 @@ label intro:
     $ renpy.call("char_" + tut_guest.img + ".tutorial_guest")
 
     y.c "And that was our guest!"
+
+    y.c "Well then, I think we should begin the game show!"
 
     jump playerselectmenu
 

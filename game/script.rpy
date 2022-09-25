@@ -76,6 +76,10 @@ init python:
             x -= 100
             trnf = notice
             renpy.sound.play("audio/notice.ogg")
+        elif emotion == "sweat":
+            x -= 100
+            trnf = sweat
+            renpy.sound.play("audio/confused.ogg")
         
         renpy.show(emotion, at_list=[Transform(pos=(x, y)), trnf])
         return
@@ -158,6 +162,15 @@ transform notice:
     pause 1
     ease 0.1 alpha 0
 
+transform sweat:
+    alignaround (.5, .5)
+    alpha 0
+    ease .05 alpha 1
+    easeout .05 alpha 0.2
+    ease .05 alpha 1
+    pause 1
+    ease 0.1 alpha 0
+
 
 ### Positions
 transform trueleft:
@@ -199,6 +212,25 @@ transform truecenter_f:
     zpos 100
     yoffset 30
     xzoom -1.0
+
+## Moves
+
+transform to_right:
+    ease 0.4 xcenter 0.75
+transform to_left:
+    ease 0.4 xcenter 0.25
+transform exit_left:
+    ease 0.4 xcenter 0.0 alpha 0
+transform exit_right:
+    ease 0.4 xcenter 1.0 alpha 0
+transform to_center:
+    ease 0.4 xcenter 0.5
+transform exit_left_f:
+    xzoom -1.0
+    ease 0.4 xcenter 0.0 alpha 0
+transform exit_right_f:
+    xzoom -1.0
+    ease 0.4 xcenter 1.0 alpha 0
 
 ## Item Positions
 
