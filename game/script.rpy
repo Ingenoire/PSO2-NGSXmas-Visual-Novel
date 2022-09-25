@@ -220,9 +220,9 @@ transform to_right:
 transform to_left:
     ease 0.4 xcenter 0.25
 transform exit_left:
-    ease 0.4 xcenter 0.0 alpha 0
+    ease 1 xcenter 0.0 alpha 0 zpos 300
 transform exit_right:
-    ease 0.4 xcenter 1.0 alpha 0
+    ease 1 xcenter 1.0 alpha 0 zpos 300
 transform to_center:
     ease 0.4 xcenter 0.5
 transform exit_left_f:

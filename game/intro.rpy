@@ -211,7 +211,30 @@ label intro:
     y.c "And that was our guest!"
 
     y.c "Well then, I think we should begin the game show!"
+    show yvonne at exit_right
+    camera:
+        perspective True
+        ease 0.5 xpos 0.0 ypos 0.0 zpos 0.0
+    pause 0.3
 
-    jump playerselectmenu
+    jump intro_cg
+
+    return
+
+label intro_cg:
+    scene cg yvonne 02 with fade
+
+    y.c "Beyond this doorway is your own personal journey!"
+    y.c "I can't wait to see what you'll encounter, and I'll be seeing you at the other side!"
+
+    scene cg yvonne 03 with dissolve
+
+    "You venture into the tunnel..."
+    camera:
+        perspective True
+        ease 3 zpos -1000 xpos 0.1 ypos 0.2
+
+    pause 3
+    "..."
 
     return
