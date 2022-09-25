@@ -4,6 +4,8 @@ define low_beeps = ['audio/low_beep.ogg']
 define mid_beeps = ['audio/mid_beep.ogg']
 define hi_beeps = ['audio/high_beepA.ogg', 'audio/high_beepB.ogg', 'audio/high_beepC.ogg']
 
+define ref_actor_files = []
+define actors = []
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
@@ -56,6 +58,7 @@ init python:
         elif event == "slow_done" or event == "end":
             renpy.sound.stop()
 
+    # Create an emote on the character, such as ? and !?
     def emote(name, emotion): # Name is the character sprite, emotion is the emote sprite.
         x = int(renpy.get_image_bounds(name)[0] + renpy.get_image_bounds(name)[2] / 2) + 150
         y = 150
@@ -75,6 +78,44 @@ init python:
             renpy.sound.play("audio/notice.ogg")
         
         renpy.show(emotion, at_list=[Transform(pos=(x, y)), trnf])
+        return
+
+    # Get a random character that has the following tags (in an array)
+    ## tags: Array of tag strings to check
+    ## removeFromLater: If true, this will prevent the rest of the run from ever spawning this character.
+    ## If no characters are usable due to this, will try again but this time toggle a used character back on.
+    def getCharacter(tags, removeFromLater = False):
+        found_person = None
+        ## Should I shuffle the list of actors over and over? Who knows...
+        ## There's no real value in having those actors in a set order is there?
+        renpy.random.shuffle(actors)
+
+        found_person = searchCharacters(tags)
+        # If it fails, we force to find someone with the tags.
+        if(found_person == None): 
+            found_person = searchCharacters(tags, True)
+
+        if removeFromLater:
+            found_person.appeared = False
+        return found_person
+
+    def searchCharacters(vtags, resetAppear=False):
+        found_person = None
+        for person in actors:
+            for tag in vtags:
+                if tag in person.tags:
+                    if resetAppear:
+                        person.appeared = False
+                        return person
+                    elif person.appeared == False:
+                        return person
+
+        return
+
+    for i in renpy.get_all_labels():
+        if i.startswith("char_"): 
+            if (('.' in i) == False):
+                ref_actor_files.append(i)
 
 ## The borders of the box containing the character's name, in left, top, right,
 ## bottom order.
@@ -117,6 +158,8 @@ transform notice:
     pause 1
     ease 0.1 alpha 0
 
+
+### Positions
 transform trueleft:
     xcenter 0.25
     ypos 20
@@ -129,21 +172,47 @@ transform trueright:
     zpos 100
     yoffset 30
 
-
-transform itemright:
-    xcenter 0.88
-    ycenter 0.4
-    zpos 100
-transform itemleft:
-    xcenter 0.15
-    ycenter 0.4
-    zpos 100
-
 transform truecenter:
     xcenter 0.5
     ypos 20
     zpos 100
     yoffset 30
+
+# Flips (because I suck at programming and can't figure out a clean way to have a transform house a flip and non-flip through renpy (and time constraints))
+transform trueleft_f:
+    xcenter 0.25
+    ypos 20
+    zpos 100
+    yoffset 30
+    xzoom -1.0
+
+transform trueright_f:
+    xcenter 0.75
+    ypos 20
+    zpos 100
+    yoffset 30
+    xzoom -1.0
+
+transform truecenter_f:
+    xcenter 0.5
+    ypos 20
+    zpos 100
+    yoffset 30
+    xzoom -1.0
+
+## Item Positions
+
+transform itemright:
+    xcenter 0.88
+    ycenter 0.4
+    zpos 100
+
+transform itemleft:
+    xcenter 0.15
+    ycenter 0.4
+    zpos 100
+
+
 
 transform zoomin:
     ycenter 0.5 xcenter 0.5
@@ -174,7 +243,6 @@ define main_class = "hunter"
 define sub_class = "force"
 
 label start:
-    call characterSetup from _call_characterSetup
-    call intro from _call_intro
+    call intro
     return
     

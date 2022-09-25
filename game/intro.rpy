@@ -3,6 +3,10 @@ label intro:
         perspective True
         zpos 0 xpos 0 ypos 0
 
+    "[ref_actor_files]"
+    "[actors]"
+    "[actors[0].tags]"
+
     scene bg christmas at zbg
     with fade
 
@@ -194,6 +198,19 @@ label intro:
     y.c "The game has a score system."
     y.c "Clearing trials will net you points, while failing them will deduct points."
     y.c "As a gameshow, we'll reward you with nice prizes based on how well you perform!"
+    
+    y.c "Since it's also a gameshow, trials aren't the only thing that are going to happen."
+    y.c "You'll get to see some interviews, trivia, and even some other strange events, based on our ratings."
+    y.c "Creating this gameshow was only possible thanks to many PSO2 players from all around the world, and they'll be taking on acting roles during certain trials!"
+
+    y.c "For example..."
+
+    # Tutorial Guest Call
+    $ tut_guest = getCharacter(["tutorial_guest"])
+    
+    $ renpy.call("char_" + tut_guest.img + ".tutorial_guest")
+
+    y.c "And that was our guest!"
 
     jump playerselectmenu
 
