@@ -204,8 +204,9 @@ label intro:
     y.c "For example..."
 
     # Tutorial Guest Call
+    $ tut_guest = None
     $ tut_guest = getCharacter(["tutorial_guest"])
-    
+
     $ renpy.call("char_" + tut_guest.img + ".tutorial_guest")
 
     y.c "And that was our guest!"

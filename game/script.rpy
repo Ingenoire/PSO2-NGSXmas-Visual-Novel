@@ -90,22 +90,22 @@ init python:
     ## If no characters are usable due to this, will try again but this time toggle a used character back on.
     def getCharacter(tags, removeFromLater = False):
         found_person = None
-        ## Should I shuffle the list of actors over and over? Who knows...
-        ## There's no real value in having those actors in a set order is there?
-        renpy.random.shuffle(actors)
+        
+        copyactors = actors.copy()
+        renpy.random.shuffle(copyactors)
 
-        found_person = searchCharacters(tags)
+        found_person = searchCharacters(tags, copyactors)
         # If it fails, we force to find someone with the tags.
         if(found_person == None): 
-            found_person = searchCharacters(tags, True)
+            found_person = searchCharacters(tags, copyactors, True)
 
         if removeFromLater:
             found_person.appeared = False
         return found_person
 
-    def searchCharacters(vtags, resetAppear=False):
+    def searchCharacters(vtags, arr, resetAppear=False):
         found_person = None
-        for person in actors:
+        for person in arr:
             for tag in vtags:
                 if tag in person.tags:
                     if resetAppear:
@@ -274,7 +274,11 @@ define p_name = "Viewer"
 define main_class = "hunter"
 define sub_class = "force"
 
+# The gameplay route.
+define route = []
+
 label start:
+    $ renpy.random.Random(seed=None)
     call intro
     return
     
