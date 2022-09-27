@@ -22,9 +22,6 @@ define p_name = "Viewer"
 define main_class = "hunter"
 define sub_class = "force"
 
-# How many events can occur in a single run
-define game_length = 6
-
 
 # Detected Trials will be written here
 define ref_trials = []
@@ -149,8 +146,8 @@ init python:
     # Generate the chain of events for this run.
     ## This includes Trials, Trivia, Interviews, ending, etc...
     def generateStoryPath():
-        # 1 Trial, 1 Intermission, 2 Trials, 1 Intermission, 1 Trial, Ending
 
+        # Clearing stuff for subsequent plays
         possibleTrials = []
         possibleTrials.clear()
         possibleTrials.extend(ref_trials)
@@ -161,11 +158,34 @@ init python:
         possibleBonuses.extend(ref_bonuses)
         renpy.random.shuffle(possibleBonuses)
 
-        # The first event must always be a trial.
-        #TODO Temporarily...
         route.clear()
-        route.extend(possibleTrials)
-        route.extend(possibleBonuses)
+
+        # First event will always be a trial
+        # Pop to remove it from possible future trials, index doesn't really matter since the arra- uh, list, gets shuffled.
+        route.append(possibleTrials.pop())
+        # Second event will always be a bonus
+        route.append(possibleBonuses.pop())
+
+        game_length = 6
+        # 33% chance of increasing the amount of events.
+        if(renpy.random.randint(0, 2) == 2):
+            game_length += renpy.random.randint(0, 2)
+
+        # how many trials/bonuses?
+        cpt_trials = 1
+        cpt_bonuses = 1
+
+        # Now we do a loop to populate the route.
+        while (len(route) < game_length - 1):
+            if(cpt_bonuses + 1 < cpt_trials):
+                route.append(possibleBonuses.pop())
+                cpt_bonuses += 1
+            else:
+                route.append(possibleTrials.pop())
+                cpt_trials += 1
+
+        # Game must always end with a trial
+        route.append(possibleTrials.pop())
 
         return
 

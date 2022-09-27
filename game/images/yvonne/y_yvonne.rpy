@@ -46,6 +46,7 @@ label .poornameentry:
     y.c "Are you seriously... calling yourself that? Like, for real?"
     y.c "That's so mid 2000's edgy! Ahaha-haaaa..."
     y.c "Sorry about that. I'll try to remain professional."
+    $ p_name = p_name + "{image=wheeze.png}"
     return
 
 # Yvonne asks you to think twice about using such a name.
