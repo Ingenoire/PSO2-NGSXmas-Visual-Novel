@@ -4,13 +4,43 @@ define low_beeps = ['audio/low_beep.ogg']
 define mid_beeps = ['audio/mid_beep.ogg']
 define hi_beeps = ['audio/high_beepA.ogg', 'audio/high_beepB.ogg', 'audio/high_beepC.ogg']
 
+
+# Detected character labels will be written here
 define ref_actor_files = []
+# The Character Objects are then written here
 define actors = []
+
+# Adventure Points
+# Obtained or lost as a result of each trial.
+define points = 0
+
+# Player name, can be changed at the start of a new playthrough.
+define p_name = "Viewer"
+
+# Main and Sub Class of the player
+# This defines the possible options you can take in certain trials
+define main_class = "hunter"
+define sub_class = "force"
+
+# How many events can occur in a single run
+define game_length = 6
+
+
+# Detected Trials will be written here
+define ref_trials = []
+# Detected Bonus Segments will be written here
+define ref_bonuses = []
+# The gameplay route, determined when you start a new run, listing the required labels in the order desired.
+define route = []
+# The index for the current event on the route, it increments after every trial/bonus section.
+define r_step = -1
+
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
 init python:
+    
     def high_beep(event, **kwargs):
         if event == "show":
             renpy.sound.play(hi_beeps[1])
@@ -113,6 +143,29 @@ init python:
                         return person
                     elif person.appeared == False:
                         return person
+
+        return
+
+    # Generate the chain of events for this run.
+    ## This includes Trials, Trivia, Interviews, ending, etc...
+    def generateStoryPath():
+        # 1 Trial, 1 Intermission, 2 Trials, 1 Intermission, 1 Trial, Ending
+
+        possibleTrials = []
+        possibleTrials.clear()
+        possibleTrials.extend(ref_trials)
+        renpy.random.shuffle(possibleTrials)
+        
+        possibleBonuses = []
+        possibleBonuses.clear()
+        possibleBonuses.extend(ref_bonuses)
+        renpy.random.shuffle(possibleBonuses)
+
+        # The first event must always be a trial.
+        #TODO Temporarily...
+        route.clear()
+        route.extend(possibleTrials)
+        route.extend(possibleBonuses)
 
         return
 
@@ -262,23 +315,24 @@ transform bounce:
     easeout .175 yoffset 30
     yoffset 30
 
-# Adventure Points
-# Obtained or lost as a result of each trial.
-define points = 0
-
-# Player name, can be changed at the start of a new playthrough.
-define p_name = "Viewer"
-
-# Main and Sub Class of the player
-# This defines the possible options you can take in certain trials
-define main_class = "hunter"
-define sub_class = "force"
-
-# The gameplay route.
-define route = []
 
 label start:
     $ renpy.random.Random(seed=None)
+    $ generateStoryPath()
+
+    "[route]"
+
     call intro
     return
     
+label chooseNextAdventure:
+
+    $ r_step += 1
+    $ check = r_step + 1 > len(route)
+
+    if (check):
+        jump ending
+    else:
+        $ renpy.jump(route[r_step] + ".begin_trial")
+    
+    return

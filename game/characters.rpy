@@ -8,6 +8,7 @@ init python:
             self.tags = tags
             self.appeared = False
 
+
 define classes = [
         "hunter",
         "fighter",

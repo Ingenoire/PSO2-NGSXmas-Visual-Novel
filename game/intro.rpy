@@ -238,4 +238,8 @@ label intro_cg:
     pause 3
     "..."
 
+    "[r_step]"
+
+    jump chooseNextAdventure
+
     return
