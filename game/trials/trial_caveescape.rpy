@@ -1,8 +1,8 @@
-label trial_testB:
+label trial_caveescape:
     return
 
 init 2 python:
-    ref_trials.append("trial_testB")
+    ref_trials.append("trial_caveescape")
 
 label .begin_trial:
     camera:
@@ -12,8 +12,8 @@ label .begin_trial:
     scene bg kanai beach at zbg
     with fade
 
-    "This is test trial B."
+    "This is the South Aelio Cave Escape."
 
-    "Wohoo!"
+    "After venturing into the cave with a ally, fight your way out!"
 
     jump chooseNextAdventure

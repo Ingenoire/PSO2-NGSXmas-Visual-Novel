@@ -30,10 +30,21 @@ label .namejudge:
         if(("Xx" in p_name) and ("xX" in p_name)):
             sad_human_detected = True
 
+        if "popona" in p_name.lower():
+            renpy.call("char_yvonne.poponaname")
+
     if lewd_detected:
         call char_yvonne.lewdnameentry
     elif sad_human_detected:
         call char_yvonne.poornameentry
+
+    return
+
+# Yvonne reacts to your comments
+# Cheat codes are parsed here!
+label .commentjudge:
+    
+    y.c "I... see! That's good to hear!"
 
     return
 
@@ -47,6 +58,14 @@ label .poornameentry:
     y.c "That's so mid 2000's edgy! Ahaha-haaaa..."
     y.c "Sorry about that. I'll try to remain professional."
     $ p_name = p_name + "{image=wheeze.png}"
+    return
+
+# Its Popona pog
+label .poponaname:
+    show yvonne c shock at bounce
+    $ emote("yvonne","confused")
+    y.c "Po-po-Popona?!"
+    y.c c wink "Hi! I'm a big fan!"
     return
 
 # Yvonne asks you to think twice about using such a name.

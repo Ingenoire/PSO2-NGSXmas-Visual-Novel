@@ -1,8 +1,8 @@
-label trial_testD:
+label trial_pvp:
     return
 
 init 2 python:
-    ref_trials.append("trial_testD")
+    ref_trials.append("trial_pvp")
 
 label .begin_trial:
     camera:
@@ -12,8 +12,8 @@ label .begin_trial:
     scene bg kanai field at zbg
     with fade
 
-    "This is test trial D."
+    "This is the PVP Trial"
 
-    "Amazing!"
+    "Collect a randomly chosen weapon, and defeat enemies within the limited amount of actions!"
 
     jump chooseNextAdventure

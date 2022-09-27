@@ -16,6 +16,8 @@ define points = 0
 
 # Player name, can be changed at the start of a new playthrough.
 define p_name = "Viewer"
+# Player comments, type certain keywords to trigger specific events.
+define p_desc = "lol"
 
 # Main and Sub Class of the player
 # This defines the possible options you can take in certain trials

@@ -223,6 +223,22 @@ label intro:
     return
 
 label intro_cg:
+
+    scene cg yvonne 01 with fade
+
+    y.c "Now, I know you're excited for this game!"
+    y.c "Is there anything you want the audience to know about?"
+
+    python:
+        p_desc = renpy.input("Say something to the audience!", length=40)
+        p_desc = p_desc.strip()
+
+        if p_desc == "":
+            p_desc = "..."
+
+    "[p_desc]"
+    call char_yvonne.commentjudge
+
     scene cg yvonne 02 with fade
 
     y.c "Beyond this doorway is your own personal journey!"
