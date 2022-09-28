@@ -140,3 +140,4 @@ game/cache/shaders.txt
 *.save
 game/saves/navigation.json
 game/saves/persistent
+*.rpyc
