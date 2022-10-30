@@ -12,7 +12,31 @@ init 1 python:
         "Yvonne",                                           # Due to coding shenanigans, you must add the Character's name, shown on screen, again.
         "yvonne",                                           # Due to coding shenanigans, you must add this character's images prefix here, again.
         [                                                   # TAGS === Each one defines how and where this character can appear in game.
-            "host"                                             # host: Hosts the show, Yvonne only.
+            "host",         # host: Hosts the show, Yvonne/Alternoire only.
+            "foodshop",      # foodshop: Attendant in the foodshop trial.
+            "newbie_noob",      # newbie_noob: The newbie in the Help Newbie trial
+            "newbie_pro",      # newbie_pro: The pro in the Help Newbie trial
+            "idol",      # idol: The idol the player helps in the Idol Trial
+            "winning_idol",      # winning_idol: The idol the player helps in the Idol Trial
+            "magnus_trekker",      # magnus_trekker: A friend who helps you out in the Mt Magnus Trek trial
+            "cave_trekker",      # cave_trekker: A friend who helps you out in the Cave Escape trial
+            "monomate_host",      # monomate_host: The host of the violent Monomate Quiz trial
+            "kvaris_bather",      # kvaris_bather: A beauty who's a part of the secret of the North Kvaris trial.
+            "medic",      # medic: A doctor/nurse who's helping you assess PQs in the PQ Checker trial.
+            "pq_owner",      # pq_owner: A unsuspecting owner of a Personal Quarters in the PQ Checker trial.
+            "pvp",      # pvp: Shows up in the PvP trial as an enemy.
+            "resol_treasure",      # resol_treasure: Someone lost in Resol Forest in the Resol Maze trial.
+            "void_god",      # void_god: A god that you end up imagining in the Retem Void trial.
+            "void_guide",      # void_guide: A cryptic being who helps you navigate the void of retem in the Retem Void trial
+            "rigs_purple",      # rigs_purple: The person who's handling the repairs of the Purple Rig in the Rig Repair trial
+            "rigs_green",      # rigs_green: The person who's handling the repairs of the Purple Rig in the Rig Repair trial
+            "rigs_orange",      # rigs_orange: The person who's handling the repairs of the Purple Rig in the Rig Repair trial
+            "salon_victim",      # salon_victim: Your friend who's stuck in an embarrasing way in the Salon Trap trial
+            "salon_spectator",      # salon_spectator: A random dude who'll show up to laugh at the victim in the bad end of the Salon Trap trial.
+            "shopkeep",      # shopkeep: The owner of a shop in the Shop Barter trial
+            "streamer",      # streamer: The streamer/ytber of the Streamer Aid trial
+            "tokyo_citizen",      # tokyo_citizen: A citizen in tokyo for the Tokyo relax trial
+            "trucker",      # trucker: The one who drives the truck in the Truck Ride Trial
         ])
     actors.append(y)
 
@@ -23,7 +47,7 @@ label .namejudge:
         lewd_detected = False
         sad_human_detected = False
         # Naughty words
-        lewdwords = ["boobs", "ass", "butt", "tits", "shit", "fuck", "piss", "pussy", "cum", "titties", "vagina", "dick", "penis", "cunt", "bitch", "bastard"]
+        lewdwords = ["boob", "ass", "butt", "tits", "shit", "fuck", "piss", "pussy", "cum", "titties", "vagina", "dick", "penis", "cunt", "bitch", "bastard"]
         for s in lewdwords:
             if s in p_name.lower(): lewd_detected = True
 

@@ -5,12 +5,16 @@ init 2 python:
     ref_trials.append("trial_streameraid")
 
 label .begin_trial:
+    $ streamer = getCharacter(["streamer"])
+
     camera:
         perspective True
         ease 0.01 zpos 0.0 xpos 0.0 ypos 0.0
     
-    scene bg kanai beach at zbg
+    scene bg kanai field at zbg
     with fade
+
+    $ renpy.show(streamer.img + " streamer idle", [truecenter])
 
     "This is the Streamer Aid trial."
 

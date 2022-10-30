@@ -10,15 +10,15 @@ init python:
 
 
 define classes = [
-        "hunter",
-        "fighter",
-        "ranger",
-        "gunner",
-        "force",
-        "techter",
-        "braver",
-        "bouncer",
-        "waker"
+        "Hunter",
+        "Fighter",
+        "Ranger",
+        "Gunner",
+        "Force",
+        "Techter",
+        "Braver",
+        "Bouncer",
+        "Waker"
     ]
 
 define defaultCharacter = Character("Yvonne", color="#FFFFFF")

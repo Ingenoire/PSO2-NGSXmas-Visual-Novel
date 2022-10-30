@@ -19,16 +19,53 @@ define p_name = "Viewer"
 # Player comments, type certain keywords to trigger specific events.
 define p_desc = "lol"
 
-# Main and Sub Class of the player
+######## MAIN/SUB CLASS
 # This defines the possible options you can take in certain trials
-define main_class = "hunter"
-define sub_class = "force"
+# Starts with a cap.
+define main_class = "Hunter"
+define sub_class = "Force"
 
+######## ERADI HEALTH AND BREAK
+# Eradi's HP. As long as it isn't zero, the game will keep going between trials.
+# When it reaches 0, proceeds to the next global phase of the story.
+# Just like the actual dark falz fight, during the down time, you can deal more damage to her, which will leave her with less HP during the next phase, if you play your cards right.
+define df_hp = 100
+define df_hp_max = 100
+# Eradi's Break Meter. If depleted, will deal some HP damage during the random segments, and play a unique scene.
+# Some actions do more break than damage.
+define df_break = 100
+define df_break_max = 100
+
+######## PLAYER HATE
+# Player's Hate, essentially HP. If it reaches 0, game over. Some actions are locked if your hate is low.
+define hate = 10
+define hate_max = 10
+
+######## PHASE
+# The phase of the VN. Determines the selection of trials and the overall story progress.
+# Goes from 1 to 4
+define phase = 0
+
+############## RANDOM TRIALS
+# Random Events for each phase of the VN.
+# If you're creating a new event, make sure to append the event label to this list in the file you've added in a "init 2 python:" label
+# Remaining Trials is the randomly sorted path, which gets shortened after every trial. If it's empty and the next phase conditions aren't met, triggers kill screen.
+define remaining_trials = []
+######## Phase 1: Initial
+define p1_trials = []
+######## Phase 2: 50% HP
+define p2_trials = []
+######## Phase 3: After ultimate attack, turns red, restores HP, broken sky phase.
+define p3_trials = []
+######## Phase 4: 30% HP in Phase 3, crawling.
+define p4_trials = []
 
 # Detected Trials will be written here
 define ref_trials = []
 # Detected Bonus Segments will be written here
 define ref_bonuses = []
+
+
 # The gameplay route, determined when you start a new run, listing the required labels in the order desired.
 define route = []
 # The index for the current event on the route, it increments after every trial/bonus section.
@@ -147,6 +184,30 @@ init python:
 
     # Generate the chain of events for this run.
     ## This includes Trials, Trivia, Interviews, ending, etc...
+    def createPhaseTrials():
+
+        if phase == 1: targetTrials = p1_trials
+        elif phase == 2: targetTrials = p2_trials
+        elif phase == 3: targetTrials = p3_trials
+        elif phase == 4: targetTrials = p4_trials
+        else:
+            return
+
+        # Clearing stuff for subsequent plays
+        possibleTrials = []
+        possibleTrials.clear()
+        possibleTrials.extend(targetTrials)
+        renpy.random.shuffle(possibleTrials)
+
+        remaining_trials.clear()
+
+        remaining_trials.extend(possibleTrials)
+        return
+
+
+    #OOOOOLD 
+    # Generate the chain of events for this run.
+    ## This includes Trials, Trivia, Interviews, ending, etc...
     def generateStoryPath():
 
         # Clearing stuff for subsequent plays
@@ -250,40 +311,40 @@ transform sweat:
 ### Positions
 transform trueleft:
     xcenter 0.25
-    ypos 20
+    ypos 0
     zpos 100
     yoffset 30
 
 transform trueright:
     xcenter 0.75
-    ypos 20
+    ypos 0
     zpos 100
     yoffset 30
 
 transform truecenter:
     xcenter 0.5
-    ypos 20
+    ypos 0
     zpos 100
     yoffset 30
 
 # Flips (because I suck at programming and can't figure out a clean way to have a transform house a flip and non-flip through renpy (and time constraints))
 transform trueleft_f:
     xcenter 0.25
-    ypos 20
+    ypos 0
     zpos 100
     yoffset 30
     xzoom -1.0
 
 transform trueright_f:
     xcenter 0.75
-    ypos 20
+    ypos 0
     zpos 100
     yoffset 30
     xzoom -1.0
 
 transform truecenter_f:
     xcenter 0.5
-    ypos 20
+    ypos 0
     zpos 100
     yoffset 30
     xzoom -1.0
@@ -314,6 +375,11 @@ transform itemright:
     ycenter 0.4
     zpos 100
 
+transform itemrighttrue:
+    xcenter 0.7
+    ycenter 0.4
+    zpos 100
+
 transform itemleft:
     xcenter 0.15
     ycenter 0.4
@@ -329,6 +395,11 @@ transform zbg:
     zpos -1000 zzoom True
     ypos -200
 
+transform zcg:
+    zpos -200
+    ypos -0.1
+    xpos -0.08
+
 transform bounce:
     yoffset 30
     easein .175 yoffset 0
@@ -340,11 +411,7 @@ transform bounce:
 
 label start:
     $ renpy.random.Random(seed=None)
-    $ generateStoryPath()
-
-    "[route]"
-
-    call intro
+    jump crawford_prologue
     return
     
 label chooseNextAdventure:
@@ -358,3 +425,38 @@ label chooseNextAdventure:
         $ renpy.jump(route[r_step] + ".begin_trial")
     
     return
+
+label newPhase:
+    # Initial Story
+    $ phase += 1
+    $ createPhaseTrials()
+    jump nextEvent
+
+
+label nextEvent:
+    # Checks for current HP, Break, Hate.
+    # Either proceeds with another event in the current phase, produces a break event if Break is empty, produces a game over if Hate is empty.
+    # Non-phase specific events here are defined by phase in their respective labels.
+    if hate <= 0:
+        jump gameover
+    elif (df_hp <= (df_hp_max / 2) and phase == 1):
+        jump newPhase
+    elif (df_hp <= 0 and phase == 2):
+        jump newPhase
+    elif (df_hp <= (df_hp_max / 3) and phase == 3):
+        jump newPhase
+    elif (df_hp <= 0 and phase == 4):
+        jump ending
+    elif df_break <= 0:
+        jump breakphase
+    else:
+        # Randomly pick one of the possible phase 1 trials.
+        # If all possible events have been called, call a death screen event, force kill the player for not being good enough.
+        # Hint at the presence of this kill screen when there's 3, 2 and then 1 trial remaining.
+        $ phase_remaining = len(remaining_trials)
+
+        if phase_remaining == 0: 
+            jump killscreen
+        else:
+            $ next_trial = remaining_trials.pop()
+            $ renpy.jump(next_trial)

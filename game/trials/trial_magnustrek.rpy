@@ -5,12 +5,16 @@ init 2 python:
     ref_trials.append("trial_magnustrek")
 
 label .begin_trial:
+    $ trekker = getCharacter(["magnus_trekker"])
+
     camera:
         perspective True
         ease 0.01 zpos 0.0 xpos 0.0 ypos 0.0
     
     scene bg kanai field at zbg
     with fade
+
+    $ renpy.show(trekker.img + " trekker idle", [truecenter])
 
     "This is the Magnus Trek trial."
 

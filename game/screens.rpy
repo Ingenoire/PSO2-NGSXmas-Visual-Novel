@@ -1171,7 +1171,33 @@ screen displayPlayerScreen:
         frame:
             text player_name
         
+## Eradi HP and Break
+screen eradi_hp_break:
+    vbox:
+        xalign 0.54 yalign 0.03
+        bar:
+            xmaximum 766
+            ymaximum 18
+            yminimum 18
+            left_bar "#ee2280"
+            right_bar "#4f4745"
+            value df_hp
+            range df_hp_max
 
+        null height 21
+
+        bar:
+            xmaximum 766
+            ymaximum 6
+            yminimum 6
+            left_bar "#5de0ff"
+            right_bar "#000000"
+            value df_break
+            range df_break_max
+
+        add "gui/eradihp_empty.png" xpos -59 ypos -62
+                
+                
 
 ## Confirm screen ##############################################################
 ##
