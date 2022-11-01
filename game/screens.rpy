@@ -5,6 +5,8 @@
 init offset = -1
 
 
+default persistent.viewedIntro = False
+
 ################################################################################
 ## Styles
 ################################################################################
@@ -321,10 +323,16 @@ screen navigation():
 
         if main_menu:
 
-            textbutton _("Start"):
+            textbutton _("Intro"):
                 hover_sound "audio/menu_hover.ogg"
                 activate_sound "audio/menu_click.ogg"
                 action Start() 
+
+            if persistent.viewedIntro == True:
+                textbutton _("{b}Start{/b}"):
+                    hover_sound "audio/menu_hover.ogg"
+                    activate_sound "audio/menu_click.ogg"
+                    action Start("directStart") 
 
         else:
 

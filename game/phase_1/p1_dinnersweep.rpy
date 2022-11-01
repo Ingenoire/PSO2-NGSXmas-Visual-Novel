@@ -2,13 +2,7 @@ init 2 python:
     p1_trials.append("p1_dinnersweep")
 
 label p1_dinnersweep:
-    scene eradi cg table intro_optimized at zbg
-    with fade
-
-    e.c "I've got a table for two, so please, sit down."
-    e.c "We could talk all day about your great adventures, and about my passions!"
-
-    e.c "C'mon! Sit!"
+    
 
     scene eradi cg emptytable smile_optimized at zcg
     with fade
@@ -88,4 +82,4 @@ label p1_dinnersweep:
     scene eradi cg tabledate smile_optimized at zcg
     with dissolve
 
-    return
+    jump nextEvent

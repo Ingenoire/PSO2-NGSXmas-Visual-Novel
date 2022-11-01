@@ -1,4 +1,8 @@
 label class_select:
+    
+    camera:
+        perspective True
+        zpos 0 xpos 0 ypos 0
 
     scene bg classcounter at zbg
     with fade

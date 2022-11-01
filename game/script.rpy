@@ -36,6 +36,14 @@ define df_hp_max = 100
 define df_break = 100
 define df_break_max = 100
 
+######## TALLY DAMAGE AND BREAK
+# With a visible HP Bar, we don't want every action to instantly reflect damage precisely.
+# This would make people rewind to find the option with the best damage and only do that.
+# So we tally it until an event during the chain of action calls the tally, inflicts it at once to eradi's HP and Break, and empties the tally.
+# Some actions can affect the current tally, like, say, adding 20% of the current tally or reducing the tally by half.
+define tallied_dmg = 0
+define tallied_break = 0
+
 ######## PLAYER HATE
 # Player's Hate, essentially HP. If it reaches 0, game over. Some actions are locked if your hate is low.
 define hate = 10
@@ -349,6 +357,13 @@ transform truecenter_f:
     yoffset 30
     xzoom -1.0
 
+
+transform movie_pos:
+    xcenter 0.5
+    ycenter 0.4
+    zoom 3
+    yoffset 30
+
 ## Moves
 
 transform to_right:
@@ -413,6 +428,11 @@ label start:
     $ renpy.random.Random(seed=None)
     jump crawford_prologue
     return
+
+label directStart:
+    $ renpy.random.Random(seed=None)
+    jump class_select
+    return
     
 label chooseNextAdventure:
 
@@ -426,6 +446,13 @@ label chooseNextAdventure:
     
     return
 
+label inflictDmgBreak:
+    $ df_hp -= tallied_dmg
+    $ df_break -= tallied_break
+    $ tallied_dmg = 0
+    $ tallied_break = 0
+    return
+
 label newPhase:
     # Initial Story
     $ phase += 1
@@ -437,6 +464,8 @@ label nextEvent:
     # Checks for current HP, Break, Hate.
     # Either proceeds with another event in the current phase, produces a break event if Break is empty, produces a game over if Hate is empty.
     # Non-phase specific events here are defined by phase in their respective labels.
+    call inflictDmgBreak
+
     if hate <= 0:
         jump gameover
     elif (df_hp <= (df_hp_max / 2) and phase == 1):

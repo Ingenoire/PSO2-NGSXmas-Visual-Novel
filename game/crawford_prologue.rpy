@@ -9,6 +9,8 @@ label crawford_prologue:
     show crawford idle at trueleft
     with dissolve
 
+    $ persistent.viewedIntro = True
+
     c.c "Okay listen up Meteorn."
     c.c screaming "I've had enough of the weird stuff going on."
 
@@ -89,7 +91,5 @@ label crawford_prologue:
 
     y.c "Welcome everyone!"
     y.c "This time around, I decided to make pso2mas a gameshow!"
-
-    call class_select
 
     return
