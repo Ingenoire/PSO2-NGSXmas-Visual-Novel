@@ -40,6 +40,14 @@ init 1 python:
         ])
     actors.append(y)
 
+label .visitor:
+    show yvonne idle at truecenter
+    y.c "Hello!"
+    y.c "So you seem to want to face off against Dark Falz!"
+    y.c "Good luck!"
+
+    return
+
 # Yvonne judges your name at the name entry screen.
 label .namejudge:
     
